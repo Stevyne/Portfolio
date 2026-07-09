@@ -1,95 +1,88 @@
-type Competence = {
-  nom: string;
-  niveau: number;
-};
+import { skillCategories } from "@/lib/data";
+import { IconCode, IconServer, IconWrench } from "./Icons";
 
-type Categorie = {
-  titre: string;
-  emoji: string;
-  competences: Competence[];
-};
-
-const categories: Categorie[] = [
-  {
-    titre: "Frontend",
-    emoji: "🖥️",
-    competences: [
-      { nom: "React / Next.js", niveau: 90 },
-      { nom: "TypeScript",      niveau: 80 },
-      { nom: "Tailwind CSS",    niveau: 85 },
-      { nom: "HTML / CSS",      niveau: 95 },
-    ],
-  },
-  {
-    titre: "Backend",
-    emoji: "⚙️",
-    competences: [
-      { nom: "Node.js",  niveau: 75 },
-      { nom: "Express",  niveau: 70 },
-      { nom: "Python",   niveau: 90 },
-      { nom: "REST API", niveau: 80 },
-    ],
-  },
-  {
-    titre: "Outils",
-    emoji: "🔧",
-    competences: [
-      { nom: "Git / GitHub", niveau: 90 },
-      { nom: "VS Code",      niveau: 95 },
-      { nom: "Docker",       niveau: 50 },
-    ],
-  },
-];
+const iconMap = {
+  frontend: IconCode,
+  backend: IconServer,
+  tools: IconWrench,
+} as const;
 
 export default function Skills() {
   return (
-    <section id="competences" className="px-10 py-5">
+    <section id="competences" className="relative section-pad">
+      <div className="glow-orb right-[-10%] top-1/3 h-72 w-72 bg-[rgba(217,70,239,0.1)]" />
 
-      <h2 className="text-['Syne'] font-sans text-3xl font-extrabold mb-6">
-        Compétences
-      </h2>
+      <div className="container-narrow relative z-10">
+        <div className="mb-12 max-w-2xl sm:mb-16">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-brand-light)]">
+            Expertise
+          </p>
+          <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            Compétences
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-[var(--color-muted)] sm:text-lg">
+            Un stack moderne orienté performance, maintenabilité et qualité
+            d&apos;expérience — du frontend au backend.
+          </p>
+        </div>
 
-
-      <div className="grid grid-cols-3 gap-5">
-        {categories.map((cat) => (
-          <div
-            key={cat.titre}
-            className="bg-gray-900 border-purple-900 rounded-3xl p-8"
-          >
-
-            <div className="flex items-center gap-3 mb-7">
-              <span className="text-2xl" >{cat.emoji}</span>
-              <h3 className="text-['Syne'] font-sans text-lg font-extrabold ">
-                {cat.titre}
-              </h3>
-            </div>
-
-            <div className="flex flex-col gap-5">
-              {cat.competences.map((comp) => (
-                <div key={comp.nom}>
-
-
-                  <div className="flex justify-between mb-2">
-                    <span className="text-sm text-gray-400">{comp.nom}</span>
-                    <span className="text-sm text-purple-600 font-semibold">
-                      {comp.niveau}%
-                    </span>
-                  </div>
-
-
-                  <div className="w-full h-1 bg-gray-950 rounded-sm">
-
-                    <div className="h-1 bg-linear-to-r from-purple-500 to-purple-700 rounded-sm shadow-[0_0_10px_var(--purple-glow)]"
-                    style={{
-                      width: `${comp.niveau}%`,
-                    }} />
-                  </div>
-
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {skillCategories.map((category) => {
+            const Icon = iconMap[category.icon];
+            return (
+              <div key={category.title} className="card p-6 sm:p-7">
+                <div className="mb-7 flex items-center gap-3">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--color-border)] bg-[rgba(139,92,246,0.12)] text-[var(--color-brand-light)]">
+                    <Icon />
+                  </span>
+                  <h3 className="font-display text-lg font-bold text-white sm:text-xl">
+                    {category.title}
+                  </h3>
                 </div>
-              ))}
-            </div>
-          </div>
-        ))}
+
+                <ul className="flex flex-col gap-5">
+                  {category.skills.map((skill) => (
+                    <li key={skill.name}>
+                      <div className="mb-2 flex items-center justify-between gap-3">
+                        <span className="text-sm text-[var(--color-text)]">
+                          {skill.name}
+                        </span>
+                        <span className="text-xs font-semibold tabular-nums text-[var(--color-brand-light)]">
+                          {skill.level}%
+                        </span>
+                      </div>
+                      <div className="skill-bar" aria-hidden>
+                        <span style={{ width: `${skill.level}%` }} />
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Tech strip */}
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-2 sm:mt-12 sm:gap-3">
+          {[
+            "React",
+            "Next.js",
+            "TypeScript",
+            "Python",
+            "Django",
+            "Node.js",
+            "Tailwind",
+            "Git",
+            "Docker",
+          ].map((tech) => (
+            <span
+              key={tech}
+              className="rounded-full border border-[var(--color-border)] bg-[rgba(255,255,255,0.02)] px-3.5 py-1.5 text-xs font-medium text-[var(--color-muted)] transition hover:border-[var(--color-brand)] hover:text-white sm:text-sm"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );
