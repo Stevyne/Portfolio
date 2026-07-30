@@ -73,12 +73,11 @@ export const projects: Project[] = [
   },
   {
     id: 2,
-    title: "Game Project",
-    description:
-      "A 2D game development project built for an engaging gameplay experience. Includes core mechanics such as character movement, collision detection, animations, and dynamic environments.",
-    tags: ["Python", "Game Dev", "Fun"],
+    title: "Gestion personnel",
+    description: "Application RH complète en Flask + PostgreSQL Système de gestion du personnel multi-utilisateur avec suivi des présences, congés, documents et notifications.",
+    tags: ["Python", "Team sphere", "Work"],
     imageOnLeft: true,
-    github: "https://github.com/Stevyne/Game",
+    github: "https://github.com/Stevyne/Gestion-de-personnel",
     accent: "from-indigo-500/30 via-purple-500/10 to-transparent",
   },
 ];
