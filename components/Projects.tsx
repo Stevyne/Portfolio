@@ -118,6 +118,16 @@ export default function Projects() {
                       Code source
                       <IconExternal className="h-3.5 w-3.5 opacity-70" />
                     </a>
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-ghost !px-5 !py-2.5"
+                    >
+                      <IconExternal className="h-4 w-4" />
+                      Voir la démo
+                      <IconExternal className="h-3.5 w-3.5 opacity-70" />
+                    </a>
                   </div>
                 </div>
               </article>

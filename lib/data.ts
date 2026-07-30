@@ -11,6 +11,7 @@ export type Project = {
   tags: string[];
   imageOnLeft: boolean;
   github: string;
+  demo?: string;
   accent: string;
 };
 
@@ -78,6 +79,7 @@ export const projects: Project[] = [
     tags: ["Python", "Team sphere", "Work"],
     imageOnLeft: true,
     github: "https://github.com/Stevyne/Gestion-de-personnel",
+    demo: "https://gestion-de-personnel-ltrb.onrender.com/",
     accent: "from-indigo-500/30 via-purple-500/10 to-transparent",
   },
 ];
