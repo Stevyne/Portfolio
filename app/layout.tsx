@@ -3,7 +3,7 @@ import { DM_Sans, Syne } from "next/font/google";
 import Navbar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/next"
+
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -83,7 +83,6 @@ export default function RootLayout({
         {children}
         <Footer />
       </body>
-      <Analytics />
     </html>
     
   );
